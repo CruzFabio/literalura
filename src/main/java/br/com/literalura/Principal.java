@@ -118,6 +118,23 @@ public class Principal {
     }
 
     private void listarAutores() {
+        List<Autor> autores = autorRepository.findAll();
+
+        if (autores.isEmpty()) {
+            System.out.println("Nenhum autor encontrado.");
+            return;
+        }
+
+        System.out.println("\n** AUTORES REGISTRADOS **");
+        System.out.println("-------------------------------");
+
+       autores.stream()
+               .forEach(autor -> {
+                   String nascimento = (autor.getAnoDeNascimento() != null) ? autor.getAnoDeNascimento().toString() : "Desconhecido";
+                   String falescimento = (autor.getAnoDeFalescimento() != null) ? autor.getAnoDeFalescimento().toString() : "Ainda vivo ou desconhecido";
+                   System.out.println("Autor(a): " + autor.getNome() + " | Nascimento: " + nascimento + " | Falescimento: " + falescimento);
+                   System.out.println("-------------------------------");
+               });
     }
 
     private void listarAutoresVivos() {
