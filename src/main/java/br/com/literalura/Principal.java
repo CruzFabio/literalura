@@ -8,10 +8,7 @@ import br.com.literalura.service.ConverteDados;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class Principal {
 
@@ -23,6 +20,8 @@ public class Principal {
     private ConverteDados converteDados = new ConverteDados();
     private List<LivroResponse> dadosLivros = new ArrayList<>();
 
+    private List<Livro> livros = new ArrayList<>();
+
     public Principal(LivroRepository livroRepository, AutorRepository autorRepository) {
         this.livroRepository = livroRepository;
         this.autorRepository = autorRepository;
@@ -32,6 +31,7 @@ public class Principal {
         int opcao = -1;
         while (opcao != 0) {
             var menu = """
+                    
                     |-----------------------------------|
                     |        **** LITERALURA ****       |
                     |-----------------------------------|
@@ -108,6 +108,13 @@ public class Principal {
     }
 
     private void listarLivros() {
+        System.out.println("\n** LIVROS BUSCADOS **");
+        System.out.println("---------------------");
+
+        livros = livroRepository.findAll();
+        livros.stream()
+                .sorted(Comparator.comparing(Livro::getTitulo))
+                .forEach(System.out::println);
     }
 
     private void listarAutores() {
