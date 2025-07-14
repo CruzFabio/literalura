@@ -142,4 +142,37 @@ public class Principal {
 
     private void listarLivrosPorIdioma() {
     }
+
+    // Método utilitário para validar a entrada de números inteiros.
+    public int lerNumeroInteiro(Scanner leitura, String mensagem) {
+        int numero = 0;
+        boolean valido = false;
+
+        while (!valido) {
+            try {
+                System.out.print(mensagem);
+                numero = leitura.nextInt();
+                leitura.nextLine();
+                valido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("\n⚠ Atenção: digite um número válido!\n");
+                leitura.nextLine();
+            }
+        }
+        return numero;
+    }
+
+    // Método utilitário para validar a entrada de texto
+    public String lerTexto(Scanner leitura, String mensagem) {
+        String texto;
+
+        do {
+            System.out.print(mensagem);
+            texto = leitura.nextLine().trim();
+            if (texto.isEmpty()) {
+                System.out.println("⚠ Atenção: o texto não pode ser vazio!");
+            }
+        } while (texto.isEmpty()) ;
+        return texto;
+    }
 }
