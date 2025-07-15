@@ -2,8 +2,6 @@ package br.com.literalura.model;
 
 import jakarta.persistence.*;
 
-import java.util.Optional;
-
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -53,9 +51,9 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Livro: " + titulo +
-                " | Idioma: " + idioma +
-                " | Downloads: " + numeroDownloads +
-                " | Autor: " + autor;
+        return "\nTítulo: '" + titulo + '\'' +
+                "\nAutor: '" + autor + '\'' +
+                "\nIdioma: '" + idioma + '\'' +
+                "\nNúmero de downloads: " + numeroDownloads;
     }
 }

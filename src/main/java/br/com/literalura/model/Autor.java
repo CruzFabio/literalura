@@ -14,11 +14,14 @@ public class Autor {
 
     private String nome;
     private Integer anoDeNascimento;
-    private Integer anoDeFalescimento;
+    private Integer anoDeFalecimento;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Livro> livros = new ArrayList<>();
 
+    public List<Livro> getLivros() {
+        return livros;
+    }
 
     public String getNome() {
         return nome;
@@ -36,17 +39,17 @@ public class Autor {
         this.anoDeNascimento = anoDeNascimento;
     }
 
-    public Integer getAnoDeFalescimento() {
-        return anoDeFalescimento;
+    public Integer getAnoDeFalecimento() {
+        return anoDeFalecimento;
     }
 
-    public void setAnoDeFalescimento(Integer anoDeFalescimento) {
-        this.anoDeFalescimento = anoDeFalescimento;
+    public void setAnoDeFalecimento(Integer anoDeFalecimento) {
+        this.anoDeFalecimento = anoDeFalecimento;
     }
 
     @Override
     public String toString() {
-        return nome + " (" + anoDeNascimento + " - " + anoDeFalescimento + ")";
+        return nome + " (" + anoDeNascimento + " - " + anoDeFalecimento + ")";
     }
 
 }
